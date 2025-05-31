@@ -1,0 +1,30 @@
+1. Avoid Code dupliction
+2. Extra Not Required Code
+
+
+✅ Benefits of This Approach
+Benefit	Description
+🧼 Cleaner Code	Avoids copy-pasting the same method
+🔁 Reusable Behavior	One change updates behavior across classes
+🔒 Safer	Reduces bugs due to duplicate logic
+💡 Still flexible	You can override in subclasses any time
+
+❌ Disadvantages of the Strategy Pattern
+1. More Classes = More Complexity
+   a. 10 strategy classes
+   b. Possibly 10 interfaces
+   c. A strategy context class
+
+2. Client Must Know About Strategies
+   👉 This can leak logic into the calling code.
+      “Should I use UPIPayment, or CreditCardPayment? What about international cards?”
+
+3. No Shared State Across Strategies
+   Each strategy is independent. If you need to share common logic or state between strategies, you may need:
+   a. Inheritance (which could lead to tight coupling)
+   b. Duplicated logic
+   c. External helper classes
+
+4. Increased Indirection
+   a. Using strategy adds a layer of indirection, which may be unnecessary for simple use cases.
+   b. If you only have 2 behaviors that barely change, using a strategy pattern might be overkill.
