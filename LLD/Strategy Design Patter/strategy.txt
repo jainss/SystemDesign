@@ -1,0 +1,2 @@
+1. Avoid Code dupliction
+2. Extra Not Required Code
