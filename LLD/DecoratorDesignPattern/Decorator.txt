@@ -1,1 +1,4 @@
-Hello
+🔧 What is the Decorator Design Pattern? -> SOLVE Class Explosion Problem.
+Definition:
+The Decorator Pattern allows you to dynamically add behavior to an object without modifying its code. 
+It’s a structural pattern that uses composition instead of inheritance.
