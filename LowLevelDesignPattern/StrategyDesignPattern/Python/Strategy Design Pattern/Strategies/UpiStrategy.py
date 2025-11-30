@@ -1,10 +1,10 @@
 import uuid
 from typing import Dict, Optional
 from PaymentStrategy import PaymentStrategy
-from PaymentError import PaymentError
-from Transaction import Transaction
+from exceptions import PaymentError
+from Transactions import Transactions
 
-class PayPalStategy(PaymentStrategy):
+class UpiStrategy(PaymentStrategy):
     def __init__(self, vpa: str):
         self.vpa = vpa
 
@@ -15,19 +15,19 @@ class PayPalStategy(PaymentStrategy):
         # write the gateway Logic here
         return {'status': "success", "upi_id": "upi-001"}
 
-    def pay(self, amount: float, metaData: Optional[Dict] = None) -> Transaction:
+    def pay(self, amount: float, metaData: Optional[Dict] = None) -> Transactions:
         if amount <=0:
             raise PaymentError("Payment must be greater than zero")
         if not self._validate():
             raise PaymentError("Invalid VPA")
-        resp = self._call_gateway(amount, metadata)
+        resp = self._call_gateway(amount, metaData)
         if resp.get("status") != "success":
             raise PaymentError("Paypal failure")
-        return Transaction(
+        return Transactions(
             id=str(uuid.uuid4()),
             amount=amount,
             method="UPI",
             status="Success",
-            meta = {"card_last4": self.email, "upi_id": resp.get("upi_id"), **(metadata or {})}
+            meta = {"card_last4": self.vpa, "upi_id": resp.get("upi_id"), **(metaData or {})}
         )
 

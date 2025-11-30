@@ -1,7 +1,7 @@
 from typing import Optional, Dict
 from PaymentStrategy import PaymentStrategy
-from PaymentError import PaymentError
-from Transaction import Transaction
+from exceptions import PaymentError
+from Transactions import Transactions
 
 
 class PaymentContext:
@@ -11,7 +11,7 @@ class PaymentContext:
     def set_strategy(self, strategy: PaymentStrategy) -> None:
         self._strategy = strategy
 
-    def pay(self, amount: float, metadata: Optional[Dict] = None) -> Transaction:
+    def pay(self, amount: float, metadata: Optional[Dict] = None) -> Transactions:
         try:
             return self._strategy.pay(amount, metadata)
         except PaymentError:

@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 from typing import Dict
 
-@dataclass(frozen=true)
-class Transaction:
+@dataclass(frozen=True)
+class Transactions:
     id: str
     amount: float
     method: str
